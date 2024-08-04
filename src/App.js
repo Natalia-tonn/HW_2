@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Greeting from './components/Greeting';
+import ShoppingList from './components/ShoppingList';
+import OrderStatus from './components/OrderStatus';
 
 function App() {
+  const foodProducts = ['Яблоко', 'Хлеб', 'Молоко', 'Сыр', 'Мясо'];
+  const orders = [
+    { orderId: 123, status: 'в пути' },
+    { orderId: 456, status: 'доставлен' },
+    { orderId: 789, status: 'в ожидании' }
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+    <div>
+      <h1>Привет <Greeting name={"Annabella"} ></Greeting></h1>
+      <ShoppingList items={foodProducts} />
+
+            <h1>Список заказов</h1>
+            {orders.map(order => (
+                <OrderStatus key={order.orderId} orderId={order.orderId} status={order.status} />
+            ))}
+        
+
+
+
+
     </div>
   );
 }
